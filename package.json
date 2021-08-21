@@ -1,0 +1,22 @@
+{
+  "name": "20210821",
+  "version": "1.0.0",
+  "description": "리액트 연습",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alfn7511/20210821.git"
+  },
+  "author": "kiminhye",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alfn7511/20210821/issues"
+  },
+  "homepage": "https://github.com/alfn7511/20210821#readme",
+  "dependencies": {
+    "react": "^17.0.2"
+  }
+}

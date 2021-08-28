@@ -20,6 +20,9 @@
     "react": "^17.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0", //규칙이 들어있는 상자 es6 => es5
+    "@babel/preset-react": "^7.14.5", // jsx => js function
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",

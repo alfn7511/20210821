@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import ErrPage from './pages/Error'
 import TodoPage from './pages/Todo'
+import ResetStyles from './components/ResetStyles'
 
 const ROUTES = {
   TODO: '/',
@@ -11,17 +12,20 @@ const ROUTES = {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path={ROUTES.TODO}>
-          <TodoPage />
-        </Route>
-        {/* 그 외에 정의되지 않는 페이지는 error page */}
-        <Route>
-          <ErrPage />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <>
+      <ResetStyles />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path={ROUTES.TODO}>
+            <TodoPage />
+          </Route>
+          {/* 그 외에 정의되지 않는 페이지는 error page */}
+          <Route>
+            <ErrPage />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </>
   )
 }
 

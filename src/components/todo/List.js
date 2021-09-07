@@ -73,24 +73,19 @@ const DeleteButton = styled.button`
   }
 `
 
-function List() {
+function List({ todos }) {
+  // 다음주에 설명 key
   return (
     <Container>
-      <Item>
-        <ToggleButton type="checkbox" />
-        <Label>아이유뮤비보기</Label>
-        <DeleteButton />
-      </Item>
-      <Item>
-        <ToggleButton type="checkbox" />
-        <Label>아이유뮤비보기</Label>
-        <DeleteButton />
-      </Item>
-      <Item>
-        <ToggleButton type="checkbox" />
-        <Label>아이유뮤비보기</Label>
-        <DeleteButton />
-      </Item>
+      {todos.map((todo) => {
+        return (
+          <Item key={todo.id}>
+            <ToggleButton type="checkbox" completed={todo.isDone} />
+            <Label>{todo.label}</Label>
+            <DeleteButton />
+          </Item>
+        )
+      })}
     </Container>
   )
 }

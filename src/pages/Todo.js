@@ -20,7 +20,7 @@ function TodoPage() {
   useEffect(() => {
     async function fetchAndSetTodos() {
       const todos = await fetchTodos()
-      console.log(todos)
+      setTodos(todos)
     }
     fetchAndSetTodos()
   }, [])

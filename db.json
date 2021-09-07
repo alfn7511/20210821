@@ -1,19 +1,19 @@
 {
-  "posts": [
+  "todos": [
+    {
+      "id": 0,
+      "label": "리액트 공부하기",
+      "isDone": true
+    },
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "label": "점심 먹기",
+      "isDone": false
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 2,
+      "label": "독서하기",
+      "isDone": false
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

@@ -73,16 +73,26 @@ const DeleteButton = styled.button`
   }
 `
 
-function List({ todos }) {
+function List({ todos, onUpdateDodo, onDeleteDodo }) {
   // 다음주에 설명 key
   return (
     <Container>
       {todos.map((todo) => {
         return (
           <Item key={todo.id}>
-            <ToggleButton type="checkbox" completed={todo.isDone} />
-            <Label>{todo.label}</Label>
-            <DeleteButton />
+            <ToggleButton
+              type="checkbox"
+              completed={todo.isDone}
+              onClick={() => {
+                onUpdateDodo(todo)
+              }}
+            />
+            <Label completed={todo.isDone}>{todo.label}</Label>
+            <DeleteButton
+              onClick={() => {
+                onDeleteDodo(todo.id)
+              }}
+            />
           </Item>
         )
       })}

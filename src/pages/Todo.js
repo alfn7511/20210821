@@ -6,7 +6,14 @@ import Header from '../components/todo/Header'
 import List from '../components/todo/List'
 import Footer from '../components/todo/Footer'
 
-import { fetchTodos } from '../services/todo'
+import {
+  fetchTodos,
+  insertTodo,
+  updateTodoStatus,
+  deleteTodo,
+} from '../services/todo'
+
+import { useTodoContext } from '../components/context'
 
 const Container = styled.div`
   background: #fff;
@@ -16,18 +23,53 @@ const Container = styled.div`
 `
 
 function TodoPage() {
-  const [todos, setTodos] = useState([])
+  const {
+    state: { filteredTodos },
+    action: { setTodos },
+  } = useTodoContext()
+
+  // componentDidMount 같이 쓸 수 있는 방법
   useEffect(() => {
-    async function fetchAndSetTodos() {
-      const todos = await fetchTodos()
-      setTodos(todos)
-    }
     fetchAndSetTodos()
   }, [])
+  async function fetchAndSetTodos() {
+    const todos = await fetchTodos()
+    setTodos(todos)
+  }
+  const handleAddTodo = async (label) => {
+    const success = await insertTodo(label)
+    if (!success) {
+      window.alert('일시적인 에러가 발생했습니다. 잠시 후에 시도해주세요.')
+      return
+    }
+    fetchAndSetTodos() // 성공일경우 리스트 갱신
+  }
+  const handleUpateTodo = async (todo) => {
+    console.log('todo', todo)
+    const success = await updateTodoStatus({ ...todo, isDone: !todo.isDone })
+    if (!success) {
+      window.alert('일시적인 에러가 발생했습니다. 잠시 후에 시도해주세요.')
+      return
+    }
+    fetchAndSetTodos() // 성공일경우 리스트 갱신
+  }
+  const handleDeleteTodo = async (id) => {
+    console.log('id', id)
+    const success = await deleteTodo(id)
+    if (!success) {
+      window.alert('일시적인 에러가 발생했습니다. 잠시 후에 시도해주세요.')
+      return
+    }
+    fetchAndSetTodos() // 성공일경우 리스트 갱신
+  }
   return (
     <Container>
-      <Header />
-      <List todos={todos} />
+      <Header onAddTodo={handleAddTodo} />
+      <List
+        todos={filteredTodos}
+        onUpdateDodo={handleUpateTodo}
+        onDeleteDodo={handleDeleteTodo}
+      />
       <Footer />
     </Container>
   )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div``
@@ -35,11 +35,23 @@ const Input = styled.input`
   box-sizing: border-box;
 `
 
-function Header() {
+function Header({ onAddTodo }) {
+  const [label, setLabel] = useState('')
+  const handleLabel = (event) => {
+    setLabel(event.target.value)
+  }
+  const handleEnter = (event) => {
+    if (event.key === 'Enter') {
+      // 부모로부터 받은 함수에 자신의 값을 넘겨준다
+      onAddTodo(label)
+      setLabel('') //양방향데이터바인딩이용
+    }
+  }
+
   return (
     <Container>
-      <CheckButton a={10} b={20} checked={true} />
-      <Input />
+      <CheckButton checked={true} />
+      <Input value={label} onChange={handleLabel} onKeyPress={handleEnter} />
     </Container>
   )
 }
